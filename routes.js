@@ -17,12 +17,13 @@ module.exports=function(app,express){
 	// })
 
 	app.get('/auth/facebook/callback/:verify_token',function(req,res){
-		console.log(req.params.hubmode);
 		var token="rebootkamp"
+		console.log(req.params.verify_token);
 		if(req.params.verify_token === token){
+			console.log('verifed');
 			res.status(200).send();
 		}else{
-			res.status(500).send();
+			res.status(500).send("crash");
 		}
 	})
 
