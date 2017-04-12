@@ -203,8 +203,8 @@ function sendStepsMessage(recipientId, messageText) {
 	          {
 	            title: "Step 4",
 	            subtitle: "Fill The Applications",
-	            item_url: "http://i.imgur.com/46g2vyz.png",               
-	            image_url: "http://i.imgur.com/OlXwIUm.png"
+	            item_url: "http://i.imgur.com/OlXwIUm.png"               
+	          
 	          }]
 	        }
 	      }
