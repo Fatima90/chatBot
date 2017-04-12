@@ -67,7 +67,7 @@ module.exports=function(app,express){
 	      case 'generic':
 	        sendGenericMessage(senderID);
 	        break;
-
+	        
 	      default:
 	        sendTextMessage(senderID, messageText);
 	    }
@@ -92,7 +92,7 @@ module.exports=function(app,express){
 	function callSendAPI(messageData) {
 	  request({
 	    uri: 'https://graph.facebook.com/v2.6/me/messages',
-	    qs: { access_token: "rebootkamp" },
+	    qs: { access_token: "EAAFymIMRnDEBAOmoPkCsv0UCB0Id1BhIQmEiRq3xLzWelrFEuYiRrTc4UNhBIk2Qy9h5ZCVa6SKr4siHxeS4m5hGwKkOFcRyRkzdDYZAM0esxqbgZBrkNADEHBZCEYquaxPNfZAi6zEXDVI7ito9mQ3X0VLatVqLQzbbGZBKjeeAZDZD" },
 	    method: 'POST',
 	    json: messageData
 
