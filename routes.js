@@ -1,3 +1,4 @@
+var request=require('request');
 
 module.exports=function(app,express){
 	app.get('/auth/facebook/callback', function(req, res) {
@@ -67,7 +68,7 @@ module.exports=function(app,express){
 	      case 'generic':
 	        sendGenericMessage(senderID);
 	        break;
-	        
+
 	      default:
 	        sendTextMessage(senderID, messageText);
 	    }
