@@ -182,7 +182,7 @@ function sendStepsMessage(recipientId, messageText) {
 	            title: "Step 1",
 	            subtitle: "Visit RBK website",
 	            item_url: "https://www.rbk.org",               
-	            image_url: "./images/logo.png",
+	            image_url: "http://rbk.org/wp-content/uploads/2016/03/znewlogo.png",
 	            buttons: [{
 	              type: "web_url",
 	              url: "https://www.rbk.org",
@@ -192,7 +192,7 @@ function sendStepsMessage(recipientId, messageText) {
 	            title: "Step 2",
 	            subtitle: "Click on Apply for next class button",
 	            item_url: "https://www.rbk.org",               
-	            image_url: "./images/2.png"
+	            image_url: "http://rbk.org/wp-content/uploads/2016/03/znewlogo.png"
 	          }]
 	        }
 	      }
