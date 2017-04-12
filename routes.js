@@ -197,11 +197,13 @@ function sendStepsMessage(recipientId, messageText) {
 	          {
 	            title: "Step 3",
 	            subtitle: "keep track of Your Email for The next step",
+	            item_url: "http://i.imgur.com/46g2vyz.png",               
 	            image_url: "http://i.imgur.com/46g2vyz.png"
 	          },
 	          {
 	            title: "Step 4",
-	            subtitle: "Fill The Applications",               
+	            subtitle: "Fill The Applications",
+	            item_url: "http://i.imgur.com/46g2vyz.png",               
 	            image_url: "http://i.imgur.com/OlXwIUm.png"
 	          }]
 	        }
