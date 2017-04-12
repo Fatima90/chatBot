@@ -93,7 +93,7 @@ module.exports=function(app,express){
 	function callSendAPI(messageData) {
 	  request({
 	    uri: 'https://graph.facebook.com/v2.6/me/messages',
-	    qs: { access_token: "EAAFymIMRnDEBAOmoPkCsv0UCB0Id1BhIQmEiRq3xLzWelrFEuYiRrTc4UNhBIk2Qy9h5ZCVa6SKr4siHxeS4m5hGwKkOFcRyRkzdDYZAM0esxqbgZBrkNADEHBZCEYquaxPNfZAi6zEXDVI7ito9mQ3X0VLatVqLQzbbGZBKjeeAZDZD" },
+	    qs: { access_token: "EAAND1xDzMrYBAIy7WKt7IbEqWuCgxB6QWxWZBp8IaLy2ZAGPqaZArhyhKHHKq8zuZCuhBru5TqT3G2mWpk7r8Ebn2ZBerDmbsiE0w7VX0LfEMk3mmcwaTuo9aBpEtT5pYm2YtBZAV0Ml0r8kFJ2dam9jB95AhhXtUuZBxomywWtCgZDZD" },
 	    method: 'POST',
 	    json: messageData
 
