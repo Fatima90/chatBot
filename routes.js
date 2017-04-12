@@ -69,6 +69,10 @@ module.exports=function(app,express){
 	        sendGenericMessage(senderID);
 	        break;
 
+	       case 'steps':
+	       sendStepsMessage(senderID);
+
+
 	      default:
 	        sendTextMessage(senderID, messageText);
 	    }
@@ -86,8 +90,8 @@ module.exports=function(app,express){
 	      text: messageText
 	    }
 	  };
-
-  		callSendAPI(messageData);
+  	
+  	 callSendAPI(messageData);
 	}
 	
 	function callSendAPI(messageData) {
@@ -151,6 +155,42 @@ module.exports=function(app,express){
 	              title: "Call Postback",
 	              payload: "Payload for second bubble",
 	            }]
+	          }]
+	        }
+	      }
+	    }
+	  };  
+
+	  callSendAPI(messageData);
+}
+
+
+function sendStepsMessage(recipientId, messageText) {
+ 	 // To be expanded in later sections
+ 	 var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      attachment: {
+	        type: "template",
+	        payload: {
+	          template_type: "generic",
+	          elements: [{
+	            title: "Step 1",
+	            subtitle: "Visit RBK website",
+	            item_url: "https://www.rbk.org",               
+	            image_url: "./images/logo.png",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.rbk.org",
+	              title: "Open RBK website"
+	            }],
+	          }, {
+	            title: "Step 2",
+	            subtitle: "Click on Apply for next class button",
+	            item_url: "https://www.rbk.org",               
+	            image_url: "./images/2.png"
 	          }]
 	        }
 	      }
