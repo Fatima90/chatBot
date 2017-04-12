@@ -193,6 +193,16 @@ function sendStepsMessage(recipientId, messageText) {
 	            subtitle: "Click on Apply for next class button",
 	            item_url: "https://www.rbk.org",               
 	            image_url: "http://i.imgur.com/iB4Y66U.png"
+	          },
+	          {
+	            title: "Step 3",
+	            subtitle: "keep track of Your Email for The next step",
+	            image_url: "http://i.imgur.com/46g2vyz.png"
+	          },
+	          {
+	            title: "Step 4",
+	            subtitle: "Fill The Applications",               
+	            image_url: "http://i.imgur.com/OlXwIUm.png"
 	          }]
 	        }
 	      }
