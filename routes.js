@@ -1,4 +1,5 @@
 var request=require('request');
+var dataFile=require('./data.json');
 
 module.exports=function(app,express){
 	app.get('/auth/facebook/callback', function(req, res) {
@@ -63,28 +64,30 @@ console.log('data entry',data)
 
 	  if (messageText) {
 
+	  	var text=checkMessage(messageText);
+	  	sendTextMessage(senderID, text);
 	    // If we receive a text message, check to see if it matches a keyword
 	    // and send back the example. Otherwise, just echo the text we received.
-	    switch (messageText) {
+	  //   switch (messageText) {
 	     
 
-	       case 'generic':
-	        sendGenericMessage(senderID);
-	        break;
+	  //      case 'generic':
+	  //       sendGenericMessage(senderID);
+	  //       break;
 
-	       case 'steps':
-	       sendStepsMessage(senderID);
-	       break;
+	  //      case 'steps':
+	  //      sendStepsMessage(senderID);
+	  //      break;
 
-	       case 'hello':
-	       case 'question':
-	       case 'want':
-	       callSendAPI(sendTextMessage(senderID,"welcom to RBK, we will answer your questions"))
-			break;
+	  //      case 'hello':
+	  //      case 'question':
+	  //      case 'want':
+	  //      callSendAPI(sendTextMessage(senderID,"welcom to RBK, we will answer your questions"))
+			// break;
 
-	      default:
-	        sendTextMessage(senderID, messageText);
-	    }
+	  //     default:
+	  //       sendTextMessage(senderID, messageText);
+	  //   }
 	  } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
 	  }
@@ -220,3 +223,16 @@ function sendStepsMessage(recipientId, messageText) {
 
 	  callSendAPI(messageData);
 }
+
+function checkMessage(text){
+	var arr=text.toLowerCase().split(' ');
+	var results=[];
+	for(var i=0; i< arr.length; i++){
+		if ( dataFile[arr[i]] ){
+			results.push(dataFile[arr[i]]);
+		}
+	}
+	return results.join();
+}
+
+console.log(checkMessage("is it FREE or do i pay Tuition"))
