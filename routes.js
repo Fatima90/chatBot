@@ -14,7 +14,7 @@ module.exports=function(app,express){
 
 	app.post('/auth/facebook/callback', function (req, res) {
 	  var data = req.body;
-
+console.log('data entry',data.entry)
 	  // Make sure this is a page subscription
 	  if (data.object === 'page') {
 
@@ -53,7 +53,7 @@ module.exports=function(app,express){
 
 	  console.log("Received message for user %d and page %d at %d with message:", 
 	    senderID, recipientID, timeOfMessage);
-	  console.log(JSON.stringify(message));
+	  //console.log(JSON.stringify(message));
 
 	  var messageId = message.mid;
 
