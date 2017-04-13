@@ -14,12 +14,13 @@ module.exports=function(app,express){
 
 	app.post('/auth/facebook/callback', function (req, res) {
 	  var data = req.body;
-console.log('data entry',data.entry)
+console.log('data entry',data)
 	  // Make sure this is a page subscription
 	  if (data.object === 'page') {
 
 	    // Iterate over each entry - there may be multiple if batched
 	    data.entry.forEach(function(entry) {
+		console.log('data entry in for loop', entry)	    	
 	      var pageID = entry.id;
 	      var timeOfEvent = entry.time;
 
