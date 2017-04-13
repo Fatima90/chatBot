@@ -76,6 +76,12 @@ console.log('data entry',data)
 	       sendStepsMessage(senderID);
 	       break;
 
+	       case 'hello':
+	       case 'question':
+	       case 'want':
+	       callSendAPI(sendTextMessage(senderID,"welcom to RBK, we will answer your questions"))
+			break;
+
 	      default:
 	        sendTextMessage(senderID, messageText);
 	    }
