@@ -1,5 +1,6 @@
 var request=require('request');
-var dataFile=require('./data.json');
+var englishData=require('./englishData.json');
+var arabicData=require('./arabicData.json')
 
 module.exports=function(app,express){
 	app.get('/auth/facebook/callback', function(req, res) {
@@ -225,14 +226,16 @@ function sendStepsMessage(recipientId, messageText) {
 }
 
 function checkMessage(text){
+	var lang=/[\u0590-\u06FF]/.test(text);
 	var arr=text.toLowerCase().split(' ');
 	var results=[];
+	var data= (lang ? arabicData : englishData);
 	for(var i=0; i< arr.length; i++){
-		if ( dataFile[arr[i]] ){
-			results.push(dataFile[arr[i]]);
+		if ( data[arr[i]] ){
+			results.push(data[arr[i]]);
 		}
 	}
 	return results.join();
 }
 
-console.log(checkMessage("is it FREE or do i pay Tuition"))
+console.log(checkMessage("متطلبات RBK"))
