@@ -16,7 +16,7 @@ module.exports=function(app,express){
 
 	app.post('/auth/facebook/callback', function (req, res) {
 	  var data = req.body;
-console.log('data entry',data)
+		console.log('data entry',data)
 	  // Make sure this is a page subscription
 	  if (data.object === 'page') {
 
@@ -30,7 +30,9 @@ console.log('data entry',data)
 	      entry.messaging.forEach(function(event) {
 	        if (event.message) {
 	          receivedMessage(event);
-	        } else {
+	        }else if (event.postback) {
+          		processPostback(event);
+        	} else {
 	          console.log("Webhook received unknown event: ", event);
 	        }
 	      });
@@ -45,8 +47,6 @@ console.log('data entry',data)
 	  }
 	});
 }
-
-
  
 	function receivedMessage(event) {
 	  var senderID = event.sender.id;
@@ -129,101 +129,35 @@ console.log('data entry',data)
   		});  
 	}
 
-	function sendGenericMessage(recipientId, messageText) {
- 	 // To be expanded in later sections
- 	 var messageData = {
-	    recipient: {
-	      id: recipientId
-	    },
-	    message: {
-	      attachment: {
-	        type: "template",
-	        payload: {
-	          template_type: "generic",
-	          elements: [{
-	            title: "rift",
-	            subtitle: "Next-generation virtual reality",
-	            item_url: "https://www.oculus.com/en-us/rift/",               
-	            image_url: "http://messengerdemo.parseapp.com/img/rift.png",
-	            buttons: [{
-	              type: "web_url",
-	              url: "https://www.oculus.com/en-us/rift/",
-	              title: "Open Web URL"
-	            }, {
-	              type: "postback",
-	              title: "Call Postback",
-	              payload: "Payload for first bubble",
-	            }],
-	          }, {
-	            title: "touch",
-	            subtitle: "Your Hands, Now in VR",
-	            item_url: "https://www.oculus.com/en-us/touch/",               
-	            image_url: "http://messengerdemo.parseapp.com/img/touch.png",
-	            buttons: [{
-	              type: "web_url",
-	              url: "https://www.oculus.com/en-us/touch/",
-	              title: "Open Web URL"
-	            }, {
-	              type: "postback",
-	              title: "Call Postback",
-	              payload: "Payload for second bubble",
-	            }]
-	          }]
-	        }
-	      }
-	    }
-	  };  
+function processPostback(event) {
+  var senderId = event.sender.id;
+  var payload = event.postback.payload;
 
-	  callSendAPI(messageData);
+  if (payload === "Greeting") {
+    // Get user's first name from the User Profile API
+    // and include it in the greeting
+    request({
+      url: "https://graph.facebook.com/v2.6/" + senderId,
+      qs: {
+        access_token: "EAAND1xDzMrYBAIy7WKt7IbEqWuCgxB6QWxWZBp8IaLy2ZAGPqaZArhyhKHHKq8zuZCuhBru5TqT3G2mWpk7r8Ebn2ZBerDmbsiE0w7VX0LfEMk3mmcwaTuo9aBpEtT5pYm2YtBZAV0Ml0r8kFJ2dam9jB95AhhXtUuZBxomywWtCgZDZD",
+        fields: "first_name"
+      },
+      method: "GET"
+    }, function(error, response, body) {
+      var greeting = "";
+      if (error) {
+        console.log("Error getting user's name: " +  error);
+      } else {
+        var bodyObj = JSON.parse(body);
+        name = bodyObj.first_name;
+        greeting = "Hi " + name + ". ";
+      }
+      var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
+      sendTextMessage(senderId, message);
+    });
+  }
 }
 
-
-function sendStepsMessage(recipientId, messageText) {
- 	 // To be expanded in later sections
- 	 var messageData = {
-	    recipient: {
-	      id: recipientId
-	    },
-	    message: {
-	      attachment: {
-	        type: "template",
-	        payload: {
-	          template_type: "generic",
-	          elements: [{
-	            title: "Step 1",
-	            subtitle: "Visit RBK WebSite",
-	            item_url: "https://www.rbk.org",               
-	            image_url: "http://rbk.org/wp-content/uploads/2016/03/znewlogo.png",
-	            buttons: [{
-	              type: "web_url",
-	              url: "https://www.rbk.org",
-	              title: "Open RBK website"
-	            }],
-	          }, {
-	            title: "Step 2",
-	            subtitle: "Click on Apply for next class button",
-	            item_url: "https://www.rbk.org",               
-	            image_url: "http://i.imgur.com/iB4Y66U.png"
-	          },
-	          {
-	            title: "Step 3",
-	            subtitle: "keep track of Your Email for The next step",
-	            item_url: "http://i.imgur.com/XwPNAY4.png",               
-	            image_url: "http://i.imgur.com/XwPNAY4.png"
-	          },
-	          {
-	            title: "Step 4",
-	            subtitle: "Fill The Applications",
-	            item_url: "http://i.imgur.com/OlXwIUm.png",
-	            image_url: "http://i.imgur.com/OlXwIUm.png"               
-	          }]
-	        }
-	      }
-	    }
-	  };  
-
-	  callSendAPI(messageData);
-}
 
 function checkMessage(text){
 	var lang=/[\u0590-\u06FF]/.test(text);
