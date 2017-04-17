@@ -6,7 +6,6 @@ module.exports=function(app,express){
 	app.get('/auth/facebook/callback', function(req, res) {
 	  if (req.query['hub.mode'] === 'subscribe' &&
 	      req.query['hub.verify_token'] === "rebootkamp") {
-	    console.log("Validating webhook");
 	    res.status(200).send(req.query['hub.challenge']);
 	  } else {
 	    console.error("Failed validation. Make sure the validation tokens match.");
@@ -16,18 +15,17 @@ module.exports=function(app,express){
 
 	app.post('/auth/facebook/callback', function (req, res) {
 	  var data = req.body;
-		console.log('data entry',data)
 	  // Make sure this is a page subscription
 	  if (data.object === 'page') {
 
 	    // Iterate over each entry - there may be multiple if batched
 	    data.entry.forEach(function(entry) {
-		console.log('data entry in for loop', entry)	    	
 	      var pageID = entry.id;
 	      var timeOfEvent = entry.time;
 
 	      // Iterate over each messaging event
 	      entry.messaging.forEach(function(event) {
+	        console.log("in looooooooop",event)
 	        if (event.message) {
 	          receivedMessage(event);
 	        }else if (event.postback) {
@@ -172,4 +170,3 @@ function checkMessage(text){
 	return results.join();
 }
 
-console.log(checkMessage("متطلبات RBK"))
