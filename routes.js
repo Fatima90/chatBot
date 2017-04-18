@@ -130,7 +130,7 @@ module.exports=function(app,express){
 	        name = bodyObj.first_name;
 	        greeting = "Hi " + name + ". ";
 	      }
-	      var message = greeting + "Welcome {{user_first_name}}. My name is RBK chatbot, I will answer your questions. {{user_first_name}}أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك.";
+	      var message = greeting + "My name is RBK chatbot, and I will answer your questions. أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك.";
 	      sendTextMessage(senderId, message);
 	    });
 	  }
