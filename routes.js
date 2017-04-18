@@ -30,6 +30,7 @@ module.exports=function(app,express){
 	        if (event.message) {
 	          receivedMessage(event);
 	        }else if (event.postback) {
+	        	console.log('in the postback')
           		processPostback(event);
         	} else {
 	          console.log("Webhook received unknown event: ", event);
@@ -66,28 +67,6 @@ module.exports=function(app,express){
 
 	  	var text=checkMessage(messageText);
 	  	sendTextMessage(senderID, text);
-	    // If we receive a text message, check to see if it matches a keyword
-	    // and send back the example. Otherwise, just echo the text we received.
-	  //   switch (messageText) {
-	     
-
-	  //      case 'generic':
-	  //       sendGenericMessage(senderID);
-	  //       break;
-
-	  //      case 'steps':
-	  //      sendStepsMessage(senderID);
-	  //      break;
-
-	  //      case 'hello':
-	  //      case 'question':
-	  //      case 'want':
-	  //      callSendAPI(sendTextMessage(senderID,"welcom to RBK, we will answer your questions"))
-			// break;
-
-	  //     default:
-	  //       sendTextMessage(senderID, messageText);
-	  //   }
 	  } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
 	  }
@@ -128,46 +107,46 @@ module.exports=function(app,express){
   		});  
 	}
 
-function processPostback(event) {
-  var senderId = event.sender.id;
-  var payload = event.postback.payload;
+	function processPostback(event) {
+	  var senderId = event.sender.id;
+	  var payload = event.postback.payload;
 
-  if (payload === "Greeting") {
-    // Get user's first name from the User Profile API
-    // and include it in the greeting
-    request({
-      url: "https://graph.facebook.com/v2.6/" + senderId,
-      qs: {
-        access_token: "EAAND1xDzMrYBAIy7WKt7IbEqWuCgxB6QWxWZBp8IaLy2ZAGPqaZArhyhKHHKq8zuZCuhBru5TqT3G2mWpk7r8Ebn2ZBerDmbsiE0w7VX0LfEMk3mmcwaTuo9aBpEtT5pYm2YtBZAV0Ml0r8kFJ2dam9jB95AhhXtUuZBxomywWtCgZDZD",
-        fields: "first_name"
-      },
-      method: "GET"
-    }, function(error, response, body) {
-      var greeting = "";
-      if (error) {
-        console.log("Error getting user's name: " +  error);
-      } else {
-        var bodyObj = JSON.parse(body);
-        name = bodyObj.first_name;
-        greeting = "Hi " + name + ". ";
-      }
-      var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
-      sendTextMessage(senderId, message);
-    });
-  }
-}
-
-
-function checkMessage(text){
-	var lang=/[\u0590-\u06FF]/.test(text);
-	var arr=text.toLowerCase().split(' ');
-	var results=[];
-	var data= (lang ? arabicData : englishData);
-	for(var i=0; i< arr.length; i++){
-		if ( data[arr[i]] ){
-			results.push(data[arr[i]]);
-		}
+	  if (payload === "Greeting") {
+	    // Get user's first name from the User Profile API
+	    // and include it in the greeting
+	    request({
+	      url: "https://graph.facebook.com/v2.6/" + senderId,
+	      qs: {
+	        access_token: "EAAND1xDzMrYBAIy7WKt7IbEqWuCgxB6QWxWZBp8IaLy2ZAGPqaZArhyhKHHKq8zuZCuhBru5TqT3G2mWpk7r8Ebn2ZBerDmbsiE0w7VX0LfEMk3mmcwaTuo9aBpEtT5pYm2YtBZAV0Ml0r8kFJ2dam9jB95AhhXtUuZBxomywWtCgZDZD",
+	        fields: "first_name"
+	      },
+	      method: "GET"
+	    }, function(error, response, body) {
+	      var greeting = "";
+	      if (error) {
+	        console.log("Error getting user's name: " +  error);
+	      } else {
+	        var bodyObj = JSON.parse(body);
+	        name = bodyObj.first_name;
+	        greeting = "Hi " + name + ". ";
+	      }
+	      var message = greeting + "Welcome {{user_first_name}}. My name is RBK chatbot, I will answer your questions. {{user_first_name}}أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك.";
+	      sendTextMessage(senderId, message);
+	    });
+	  }
 	}
-	return results.join();
-}
+
+
+	function checkMessage(text){
+		var lang=/[\u0590-\u06FF]/.test(text);
+		var arr=text.toLowerCase().split(' ');
+		var results=[];
+		var data= (lang ? arabicData : englishData);
+		for(var i=0; i< arr.length; i++){
+			if ( data[arr[i]] ){
+				results.push(data[arr[i]]);
+			}
+		}
+		return results.join();
+	}
 
