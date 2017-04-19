@@ -20,8 +20,11 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "messenger-bot": "^2.4.0",
     "morgan": "^1.8.1",
     "request": "^2.81.0",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "underscore": "^1.8.3",
+    "underscore-node": "^0.1.2"
   }
 }
