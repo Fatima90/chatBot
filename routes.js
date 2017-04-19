@@ -1,6 +1,7 @@
 var request=require('request');
 var englishData=require('./englishData.json');
 var arabicData=require('./arabicData.json')
+var _ = require('underscore-node');
 
 module.exports=function(app,express){
 	app.get('/auth/facebook/callback', function(req, res) {
@@ -66,7 +67,11 @@ module.exports=function(app,express){
 	  if (messageText) {
 
 	  	var text=checkMessage(messageText);
-	  	sendTextMessage(senderID, text);
+	  	if(!text){
+	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again");
+	  	}else{
+	  		sendTextMessage(senderID, text);	  		
+	  	}
 	  } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
 	  }
@@ -142,11 +147,18 @@ module.exports=function(app,express){
 		var arr=text.toLowerCase().split(' ');
 		var results=[];
 		var data= (lang ? arabicData : englishData);
+		if( text.toLowerCase().indexOf("what is rbk") > 0 ){
+			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curricula.";
+		}else if(text.toLowerCase().indexOf("how are you") > 0 ){
+			return "Great, How can the I help? please ask me any question you have!"
+		}		
 		for(var i=0; i< arr.length; i++){
 			if ( data[arr[i]] ){
 				results.push(data[arr[i]]);
 			}
 		}
-		return results.join();
+
+		return _.uniq(results).join();
 	}
 
+console.log(checkMessage("something"))
