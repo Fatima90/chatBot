@@ -144,13 +144,13 @@ module.exports=function(app,express){
 
 	function checkMessage(text){
 		var lang=/[\u0590-\u06FF]/.test(text);
-		var arr=text.toLowerCase().split(' ');
+		var arr=text.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(' ');
 		var results=[];
 		var data= (lang ? arabicData : englishData);
-		if( text.toLowerCase().indexOf("what is rbk") > 0 ){
-			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curricula.";
-		}else if(text.toLowerCase().indexOf("how are you") > 0 ){
-			return "Great, How can the I help? please ask me any question you have!"
+		if( text.toLowerCase().indexOf("what is rbk") !== -1 || text.toLowerCase().indexOf("what is rebootkamp") !==  -1 ){
+			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curriculam.";
+		}else if(text.toLowerCase().indexOf("how are you") !== -1 ){
+			return "Great, How can the I help? please ask me any question you related to RBK!"
 		}		
 		for(var i=0; i< arr.length; i++){
 			if ( data[arr[i]] ){
@@ -161,4 +161,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();
 	}
 
-console.log(checkMessage("something"))
+console.log(checkMessage("is it free?"))
