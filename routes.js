@@ -153,6 +153,8 @@ module.exports=function(app,express){
 			return "Great, How can the I help? please ask me any question related to RBK!"
 		}else if(text.toLowerCase().indexOf("ok") !== -1 || text.toLowerCase().indexOf("yes") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("yeah") !== -1){
 			return ":)"
+		}else if(text.toLowerCase().indexOf("thank you") !== -1 || text.toLowerCase().indexOf("thanks") !== -1 || text.toLowerCase().indexOf("thx") !== -1 || text.toLowerCase().indexOf("great") !== -1){
+			return "You are welcome!"
 		}		
 		for(var i=0; i< arr.length; i++){
 			if ( data[arr[i]] ){
@@ -163,4 +165,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();
 	}
 
-console.log(checkMessage("is it free?"))
+console.log(checkMessage("how can i fees?"))
