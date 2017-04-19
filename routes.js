@@ -150,7 +150,9 @@ module.exports=function(app,express){
 		if( text.toLowerCase().indexOf("what is rbk") !== -1 || text.toLowerCase().indexOf("what is rebootkamp") !==  -1 ){
 			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curriculam.";
 		}else if(text.toLowerCase().indexOf("how are you") !== -1 ){
-			return "Great, How can the I help? please ask me any question you related to RBK!"
+			return "Great, How can the I help? please ask me any question related to RBK!"
+		}else if(text.toLowerCase().indexOf("ok") !== -1 || text.toLowerCase().indexOf("yes") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("yeah") !== -1){
+			return ":)"
 		}		
 		for(var i=0; i< arr.length; i++){
 			if ( data[arr[i]] ){
