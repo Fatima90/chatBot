@@ -144,19 +144,26 @@ module.exports=function(app,express){
 
 	function checkMessage(text){
 		var lang=/[\u0590-\u06FF]/.test(text);
-		var arr=text.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(' ');
+		if(lang){
+			var arr=text.toLowerCase().split(' ');	
+		}else{
+		var arr=text.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(' ');			
+		}
 		var results=[];
 		var data= (lang ? arabicData : englishData);
-		if( text.toLowerCase().indexOf("what is rbk") !== -1 || text.toLowerCase().indexOf("what is rebootkamp") !==  -1 ){
+		if( text.toLowerCase().indexOf("bye") !== -1 || text.toLowerCase().indexOf("byee") !==  -1 ){
+			return "Bye!";
+		}else if( text.toLowerCase().indexOf("what is rbk") !== -1 || text.toLowerCase().indexOf("what is rebootkamp") !==  -1 ){
 			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curriculam.";
 		}else if(text.toLowerCase().indexOf("how are you") !== -1 ){
 			return "Great, How can the I help? please ask me any question related to RBK!"
-		}else if(text.toLowerCase().indexOf("ok") !== -1 || text.toLowerCase().indexOf("yes") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("yeah") !== -1){
+		}else if(text.toLowerCase().indexOf("ok") !== -1 || text.toLowerCase().indexOf("yes") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("yeah") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("cool") !== -1){
 			return ":)"
 		}else if(text.toLowerCase().indexOf("thank you") !== -1 || text.toLowerCase().indexOf("thanks") !== -1 || text.toLowerCase().indexOf("thx") !== -1 || text.toLowerCase().indexOf("great") !== -1){
 			return "You are welcome!"
 		}		
 		for(var i=0; i< arr.length; i++){
+			console.log(data[arr[i]])
 			if ( data[arr[i]] ){
 				results.push(data[arr[i]]);
 			}
@@ -165,4 +172,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();
 	}
 
-console.log(checkMessage("how can i fees?"))
+console.log(checkMessage("ما هي كلفة معسكر البرنامج؟"))
