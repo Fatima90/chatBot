@@ -155,6 +155,8 @@ module.exports=function(app,express){
 			return "Bye!";
 		}else if( text.toLowerCase().indexOf("what is rbk") !== -1 || text.toLowerCase().indexOf("what is rebootkamp") !==  -1 ){
 			return "We are the first code bootcamp in the Arab world. Silicon Valley based Hack Reactor, the leading code bootcamp in the United States, is a cofounding partner and provides the curriculam.";
+		}else if(text.toLowerCase().indexOf("hello") !== -1 || text.toLowerCase().indexOf("hey") !== -1 || text.toLowerCase().indexOf("hi") !== -1){
+			return "Hello, what do you want to know about RBK?"
 		}else if(text.toLowerCase().indexOf("how are you") !== -1 ){
 			return "Great, How can the I help? please ask me any question related to RBK!"
 		}else if(text.toLowerCase().indexOf("ok") !== -1 || text.toLowerCase().indexOf("yes") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("yeah") !== -1 || text.toLowerCase().indexOf("aha") !== -1 || text.toLowerCase().indexOf("cool") !== -1){
@@ -177,3 +179,5 @@ module.exports=function(app,express){
 
 		return _.uniq(results).join();
 	}
+
+console.log(checkMessage("ما هو مدة البرنامج؟"))
