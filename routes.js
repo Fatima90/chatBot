@@ -94,7 +94,7 @@ module.exports=function(app,express){
 	  var messageAttachments = message.attachments;
 
 	if (messageText) {
-		if (messageText.toLowerCase().indexOf("تقديم") !== -1 || messageText.toLowerCase().indexOf("تسجيل") !==  -1 ||  messageText.toLowerCase().indexOf("أسجل") !==  -1 ||  messageText.toLowerCase().indexOf("أقدم") !==  -1   || messageText.toLowerCase().indexOf("apply") !==  -1) {
+		if (messageText.toLowerCase().indexOf("تسجيل") !==  -1 ||  messageText.toLowerCase().indexOf("أسجل") !==  -1 ||  messageText.toLowerCase().indexOf("أقدم") !==  -1   || messageText.toLowerCase().indexOf("apply") !==  -1) {
 			sendApplyMessage(senderID);
 		}else{
 		  var text=checkMessage(messageText,senderID);
