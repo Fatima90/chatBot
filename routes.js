@@ -93,19 +93,22 @@ module.exports=function(app,express){
 	  var messageText = message.text;
 	  var messageAttachments = message.attachments;
 
-	  if (messageText) {
-
-	  	var text=checkMessage(messageText,senderID);
-	  	if(!text){
+	if (messageText) {
+	if (text.toLowerCase().indexOf("تقديم") !== -1 || text.toLowerCase().indexOf("تسجيل") !==  -1 ||  text.toLowerCase().indexOf("أسجل") !==  -1 ||  text.toLowerCase().indexOf("أقدم") !==  -1   || text.toLowerCase().indexOf("apply") !==  -1) {
+		sendApplyMessage(senderid);
+	}else{
+	  var text=checkMessage(messageText,senderID);
+		if(!text){
 	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
 	  	}else{
 	  		sendTextMessage(senderID, text);	  		
-	  	}
-	  } else if (messageAttachments) {
+	    	}
+	     }
+	 } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
 	  }
 	}
-	
+
 	function sendTextMessage(recipientId, messageText) {
 	  var messageData = {
 	    recipient: {
@@ -199,17 +202,14 @@ module.exports=function(app,express){
 		}else if( text.toLowerCase().indexOf("باي") !== -1 || text.toLowerCase().indexOf("وداعا") !==  -1 || text.toLowerCase().indexOf("الى اللقاء") !==  -1 || text.toLowerCase().indexOf("سلام") !==  -1 || text.toLowerCase().indexOf("بايات") !== -1){
 			console.log('here')
 			return ":)";
-		}else if (text.toLowerCase().indexOf("تقديم") !== -1 || text.toLowerCase().indexOf("تسجيل") !==  -1 ||  text.toLowerCase().indexOf("أسجل") !==  -1 ||  text.toLowerCase().indexOf("أقدم") !==  -1   || text.toLowerCase().indexOf("apply") !==  -1) {
-			sendApplyMessage(senderid);
-		}else{		
-			for(var i=0; i< arr.length; i++){
-				if ( data[arr[i]] ){
-					results.push(data[arr[i]]);
-				}
+		}	
+		
+		for(var i=0; i< arr.length; i++){
+			if ( data[arr[i]] ){
+				results.push(data[arr[i]]);
 			}
-
-			return _.uniq(results).join();
 		}
+		return _.uniq(results).join();	
 	}
 
 console.log(checkMessage("apply"))
