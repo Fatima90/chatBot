@@ -200,8 +200,7 @@ module.exports=function(app,express){
 		}else if( text.toLowerCase().indexOf("مرحبا") !== -1 || text.toLowerCase().indexOf("هاي") !==  -1 || text.toLowerCase().indexOf("السلام عليكم") !==  -1 || text.toLowerCase().indexOf("كيفك") !==  -1 || text.toLowerCase().indexOf("كيف حالك") !==  -1 || text.toLowerCase().indexOf("كيف الحال") !==  -1){
 			return "كيف أستطيع مساعدتك ؟";
 		}else if( text.toLowerCase().indexOf("باي") !== -1 || text.toLowerCase().indexOf("وداعا") !==  -1 || text.toLowerCase().indexOf("الى اللقاء") !==  -1 || text.toLowerCase().indexOf("سلام") !==  -1 || text.toLowerCase().indexOf("بايات") !== -1){
-			console.log('here')
-			return ":)";
+			return "وداعاّ";
 		}	
 		
 		for(var i=0; i< arr.length; i++){
@@ -212,4 +211,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();	
 	}
 
-console.log(checkMessage("apply"))
+console.log(checkMessage("باي"))
