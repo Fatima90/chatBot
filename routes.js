@@ -68,7 +68,7 @@ module.exports=function(app,express){
 
 	  	var text=checkMessage(messageText);
 	  	if(!text){
-	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again");
+	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
 	  	}else{
 	  		sendTextMessage(senderID, text);	  		
 	  	}
@@ -161,7 +161,14 @@ module.exports=function(app,express){
 			return ":)"
 		}else if(text.toLowerCase().indexOf("thank you") !== -1 || text.toLowerCase().indexOf("thanks") !== -1 || text.toLowerCase().indexOf("thx") !== -1 || text.toLowerCase().indexOf("great") !== -1){
 			return "You are welcome!"
-		}		
+		}else if( text.toLowerCase().indexOf("ماشي") !== -1 || text.toLowerCase().indexOf("ايوا") !==  -1 || text.toLowerCase().indexOf("طيب") !==  -1 || text.toLowerCase().indexOf("اها") !==  -1  || text.toLowerCase().indexOf("اوكي") !==  -1 || text.toLowerCase().indexOf("اوك") !==  -1){
+			return ":)";
+		}else if( text.toLowerCase().indexOf("مرحبا") !== -1 || text.toLowerCase().indexOf("هاي") !==  -1 || text.toLowerCase().indexOf("السلام عليكم") !==  -1 || text.toLowerCase().indexOf("كيفك") !==  -1 || text.toLowerCase().indexOf("كيف حالك") !==  -1 || text.toLowerCase().indexOf("كيف الحال") !==  -1){
+			return "كيف أستطيع مساعدتك ؟";
+		}else if( text.toLowerCase().indexOf("باي") !== -1 || text.toLowerCase().indexOf("وداعا") !==  -1 || text.toLowerCase().indexOf("الى اللقاء") !==  -1 || text.toLowerCase().indexOf("سلام") !==  -1 || text.toLowerCase().indexOf("بايات") !== -1){
+			console.log('here')
+			return ":)";
+		}			
 		for(var i=0; i< arr.length; i++){
 			if ( data[arr[i]] ){
 				results.push(data[arr[i]]);
@@ -170,5 +177,3 @@ module.exports=function(app,express){
 
 		return _.uniq(results).join();
 	}
-
-console.log(checkMessage("what are fees"))
