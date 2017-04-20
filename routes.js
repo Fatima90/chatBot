@@ -125,7 +125,7 @@ module.exports=function(app,express){
 	function callSendAPI(messageData) {
 	  request({
 	    uri: 'https://graph.facebook.com/v2.6/me/messages',
-	    qs: { access_token: "EAAND1xDzMrYBAPRA2mQAABQJd5dOy03BI96Rm9XFo1FeYs4DR8OPLmld0Vt48JjjOYrssWljnUxepjk03mWtnHhsRllxWXOGaHNAJn9Kj8AkQPa7pOOZCz5BSgVYxdqbIWkY4oXZBxMQ52dQtOKDnKDkrkie7p27LvoOZBl9AZDZD" },
+	    qs: { access_token: "EAAND1xDzMrYBAJ4O7bFK9iW6LgtmqpqQlWnECvVmfn89n9b1wKc7TZCKhlyr9dtoL6BaMjrB2buizvZBfXls2mIne9k1mpezJYlTpVtRKi5gLCObVfxbiGjWaljnIk3SlKuYweLiV23bSjttcJj04h7X9tmPgQ5u7MWs1E4gZDZD" },
 	    method: 'POST',
 	    json: messageData
 
@@ -154,7 +154,7 @@ module.exports=function(app,express){
 	    request({
 	      url: "https://graph.facebook.com/v2.6/" + senderId,
 	      qs: {
-	        access_token: "EAAND1xDzMrYBAPRA2mQAABQJd5dOy03BI96Rm9XFo1FeYs4DR8OPLmld0Vt48JjjOYrssWljnUxepjk03mWtnHhsRllxWXOGaHNAJn9Kj8AkQPa7pOOZCz5BSgVYxdqbIWkY4oXZBxMQ52dQtOKDnKDkrkie7p27LvoOZBl9AZDZD",
+	        access_token: "EAAND1xDzMrYBAJ4O7bFK9iW6LgtmqpqQlWnECvVmfn89n9b1wKc7TZCKhlyr9dtoL6BaMjrB2buizvZBfXls2mIne9k1mpezJYlTpVtRKi5gLCObVfxbiGjWaljnIk3SlKuYweLiV23bSjttcJj04h7X9tmPgQ5u7MWs1E4gZDZD",
 	        fields: "first_name"
 	      },
 	      method: "GET"
