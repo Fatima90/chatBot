@@ -167,7 +167,7 @@ module.exports=function(app,express){
 	        name = bodyObj.first_name;
 	        greeting = "Hi " + name + ". ";
 	      }
-	      var message = greeting + "My name is RBK chatbot, and I will answer your questions. أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك.";
+	      var message = greeting + "My name is RBK chatbot, and I will answer your questions. if you want to talk with human please call us on 0797771441.   أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك ,إذا أردت التحدث مع إنسان يرجى الإتصال على الرقم ٠٧٩٧٧٧١٤٤١.";
 	      sendTextMessage(senderId, message);
 	    });
 	  }
@@ -210,5 +210,3 @@ module.exports=function(app,express){
 		}
 		return _.uniq(results).join();	
 	}
-
-console.log(checkMessage("باي"))
