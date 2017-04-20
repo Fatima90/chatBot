@@ -94,16 +94,16 @@ module.exports=function(app,express){
 	  var messageAttachments = message.attachments;
 
 	if (messageText) {
-	if (messageText.toLowerCase().indexOf("تقديم") !== -1 || messageText.toLowerCase().indexOf("تسجيل") !==  -1 ||  messageText.toLowerCase().indexOf("أسجل") !==  -1 ||  messageText.toLowerCase().indexOf("أقدم") !==  -1   || messageText.toLowerCase().indexOf("apply") !==  -1) {
-		sendApplyMessage(senderid);
-	}else{
-	  var text=checkMessage(messageText,senderID);
-		if(!text){
-	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
-	  	}else{
-	  		sendTextMessage(senderID, text);	  		
-	    	}
-	     }
+		if (messageText.toLowerCase().indexOf("تقديم") !== -1 || messageText.toLowerCase().indexOf("تسجيل") !==  -1 ||  messageText.toLowerCase().indexOf("أسجل") !==  -1 ||  messageText.toLowerCase().indexOf("أقدم") !==  -1   || messageText.toLowerCase().indexOf("apply") !==  -1) {
+			sendApplyMessage(senderid);
+		}else{
+		  var text=checkMessage(messageText,senderID);
+			if(!text){
+		  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
+		  	}else{
+		  		sendTextMessage(senderID, text);	  		
+		    	}
+		}
 	 } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
 	  }
