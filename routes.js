@@ -163,7 +163,6 @@ module.exports=function(app,express){
 			return "You are welcome!"
 		}		
 		for(var i=0; i< arr.length; i++){
-			console.log(data[arr[i]])
 			if ( data[arr[i]] ){
 				results.push(data[arr[i]]);
 			}
@@ -172,4 +171,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();
 	}
 
-console.log(checkMessage("ما هي كلفة معسكر البرنامج؟"))
+console.log(checkMessage("what are fees"))
