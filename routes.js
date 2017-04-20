@@ -49,6 +49,35 @@ module.exports=function(app,express){
 	});
 }
  
+
+
+	function sendApplyMessage(recipientId) {
+ 	 // To be expanded in later sections
+	var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      attachment: {
+	        type: "template",
+	        payload: {
+	          template_type: "generic",
+	          elements: [{
+	            title: "Apply To RBK",
+	            subtitle: "Visit RBK WebSite",
+	            item_url: "https://www.rbk.org",               
+	            image_url: "http://rbk.org/wp-content/uploads/2016/03/znewlogo.png",
+	            buttons: [{
+	              type: "web_url",
+	              url: "https://www.rbk.org",
+	              title: "Open RBK website"
+	            }] }]
+	        }
+	      }
+	    }
+	  };  
+	  callSendAPI(messageData);
+}
 	function receivedMessage(event) {
 	  var senderID = event.sender.id;
 	  var recipientID = event.recipient.id;
@@ -66,7 +95,7 @@ module.exports=function(app,express){
 
 	  if (messageText) {
 
-	  	var text=checkMessage(messageText);
+	  	var text=checkMessage(messageText,senderID);
 	  	if(!text){
 	  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
 	  	}else{
@@ -142,7 +171,7 @@ module.exports=function(app,express){
 	}
 
 
-	function checkMessage(text){
+	function checkMessage(text,senderid){
 		var lang=/[\u0590-\u06FF]/.test(text);
 		if(lang){
 			var arr=text.toLowerCase().split(' ');	
@@ -170,14 +199,17 @@ module.exports=function(app,express){
 		}else if( text.toLowerCase().indexOf("باي") !== -1 || text.toLowerCase().indexOf("وداعا") !==  -1 || text.toLowerCase().indexOf("الى اللقاء") !==  -1 || text.toLowerCase().indexOf("سلام") !==  -1 || text.toLowerCase().indexOf("بايات") !== -1){
 			console.log('here')
 			return ":)";
-		}			
-		for(var i=0; i< arr.length; i++){
-			if ( data[arr[i]] ){
-				results.push(data[arr[i]]);
+		}else if (text.toLowerCase().indexOf("تقديم") !== -1 || text.toLowerCase().indexOf("تسجيل") !==  -1 ||  text.toLowerCase().indexOf("أسجل") !==  -1 ||  text.toLowerCase().indexOf("أقدم") !==  -1   || text.toLowerCase().indexOf("apply") !==  -1) {
+			sendApplyMessage(senderid);
+		}else{		
+			for(var i=0; i< arr.length; i++){
+				if ( data[arr[i]] ){
+					results.push(data[arr[i]]);
+				}
 			}
-		}
 
-		return _.uniq(results).join();
+			return _.uniq(results).join();
+		}
 	}
 
-console.log(checkMessage("ما هو مدة البرنامج؟"))
+console.log(checkMessage("apply"))
