@@ -195,7 +195,7 @@ module.exports=function(app,express){
 			return ":)"
 		}else if(text.toLowerCase().indexOf("thank you") !== -1 || text.toLowerCase().indexOf("thanks") !== -1 || text.toLowerCase().indexOf("thx") !== -1 || text.toLowerCase().indexOf("great") !== -1){
 			return "You are welcome!"
-		}else if( text.toLowerCase().indexOf("ماشي") !== -1 || text.toLowerCase().indexOf("ايوا") !==  -1 || text.toLowerCase().indexOf("طيب") !==  -1 || text.toLowerCase().indexOf("اها") !==  -1  || text.toLowerCase().indexOf("اوكي") !==  -1 || text.toLowerCase().indexOf("اوك") !==  -1){
+		}else if( text.toLowerCase().indexOf("ماشي") !== -1 || text.toLowerCase().indexOf("ايوا") !==  -1 || text.toLowerCase().indexOf("اها") !==  -1  || text.toLowerCase().indexOf("اوكي") !==  -1 || text.toLowerCase().indexOf("اوك") !==  -1){
 			return ":)";
 		}else if( text.toLowerCase().indexOf("مرحبا") !== -1 || text.toLowerCase().indexOf("هاي") !==  -1 || text.toLowerCase().indexOf("السلام عليكم") !==  -1 || text.toLowerCase().indexOf("كيفك") !==  -1 || text.toLowerCase().indexOf("كيف حالك") !==  -1 || text.toLowerCase().indexOf("كيف الحال") !==  -1){
 			return "كيف أستطيع مساعدتك ؟";
@@ -212,4 +212,4 @@ module.exports=function(app,express){
 		return _.uniq(results).join();	
 	}
 
-	console.log(checkMessage("وعندكم مشكلة مع الجنسية (سوري,أردني) ؟"))
+	console.log(checkMessage(""))
