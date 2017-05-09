@@ -98,11 +98,11 @@ module.exports=function(app,express){
 			sendApplyMessage(senderID);
 		}else{
 		  var text=checkMessage(messageText,senderID);
-			if(!text){
-		  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
-		  	}else{
+			// if(!text){
+		 //  		sendTextMessage(senderID, "I didn't get the question, please rephrase it again. لم أفهم السؤال, الرجاء إعادة صياغة السؤال");
+		 //  	}else{
 		  		sendTextMessage(senderID, text);	  		
-		    	}
+		    	// }
 		}
 	 } else if (messageAttachments) {
 	    sendTextMessage(senderID, "Message with attachment received");
@@ -208,5 +208,8 @@ module.exports=function(app,express){
 				results.push(data[arr[i]]);
 			}
 		}
+		
 		return _.uniq(results).join();	
 	}
+
+	console.log(checkMessage("وعندكم مشكلة مع الجنسية (سوري,أردني) ؟"))
