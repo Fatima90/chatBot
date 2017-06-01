@@ -213,3 +213,5 @@ module.exports=function(app,express){
 	}
 
 	console.log(checkMessage(""))
+
+	//https://tranquil-reef-42502.herokuapp.com/auth/facebook/callback

@@ -1,0 +1,18 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+  "setting_type":"greeting",
+  "greeting":{
+    "text":"My name is RBK chatbot, and I will answer your questions. if you want to talk with human please call us on 0797771441.   أهلا وسهلا بك,أنا هو المتحدث الأوتماتيكي وسوف أقوم بلإجابة على جميع استفسارتك ,إذا أردت التحدث مع إنسان يرجى الإتصال على الرقم ٠٧٩٧٧٧١٤٤١."
+  }
+}' "https://graph.facebook.com/v2.6/rbk.org/thread_settings?access_token=EAAND1xDzMrYBAPRA2mQAABQJd5dOy03BI96Rm9XFo1FeYs4DR8OPLmld0Vt48JjjOYrssWljnUxepjk03mWtnHhsRllxWXOGaHNAJn9Kj8AkQPa7pOOZCz5BSgVYxdqbIWkY4oXZBxMQ52dQtOKDnKDkrkie7p27LvoOZBl9AZDZD"    
+
+
+curl -X DELETE -H "Content-Type: application/json" -d '{
+  "setting_type":"call_to_actions",
+  "thread_state":"new_thread"
+}' "https://graph.facebook.com/v2.6/rbk.org/thread_settings?access_token=EAAND1xDzMrYBAMaLOc8cmQUwQgTsaAkRE6AmVw8sYJ13dBcSpOI64QnL34xn51dLIKvCxwGQY4pHB7zWpXojZCPVvmEFcTpb8kKPcfi2bN2fxz9b4tueZBA6MjYdkYTkYh6XzMEeq1Og5rNY2ODzb1zf31K40U8wkLThZB13wZDZD" 
+
+curl -X DELETE -H "Content-Type: application/json" -d '{
+  "setting_type":"call_to_actions",
+  "thread_state":"new_thread"
+}' "https://graph.facebook.com/v2.6/rbk.org/thread_settings?access_token=EAAND1xDzMrYBAMaLOc8cmQUwQgTsaAkRE6AmVw8sYJ13dBcSpOI64QnL34xn51dLIKvCxwGQY4pHB7zWpXojZCPVvmEFcTpb8kKPcfi2bN2fxz9b4tueZBA6MjYdkYTkYh6XzMEeq1Og5rNY2ODzb1zf31K40U8wkLThZB13wZDZD“    
+   
